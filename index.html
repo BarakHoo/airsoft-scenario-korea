@@ -216,6 +216,59 @@
     border-radius: 8px; color: var(--steel-dim);
   }
 
+  /* ===== Table ===== */
+  .table-scroll { overflow-x: auto; border-radius: 12px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; background: rgba(12,15,20,0.6); }
+  caption { caption-side: bottom; font-size: 13px; color: var(--steel-dim); padding: 10px; text-align: start; }
+  th, td { padding: 12px 14px; text-align: center; border-bottom: 1px solid var(--line); }
+  thead th {
+    background: var(--ink-600);
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 14px; color: var(--steel);
+  }
+  tbody tr:nth-child(odd) { background: rgba(36,48,73,0.25); }
+  tbody tr:hover { background: rgba(202,167,74,0.12); }
+  .cls {
+    display: inline-grid; place-items: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--nk-red); color: var(--paper); font-weight: 900;
+  }
+  td.note { text-align: start; font-size: 14px; color: var(--steel-dim); }
+  .mode { font-size: 13px; color: var(--steel-dim); }
+
+  /* ===== Rule lists ===== */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rule-block h3 {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 19px; margin: 0 0 12px;
+    color: var(--gold); display: flex; align-items: center; gap: 10px;
+  }
+  .rule-block h3 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--nk-red-bright); }
+  ul.clean { list-style: none; margin: 0; padding: 0; }
+  ul.clean li { position: relative; padding-inline-start: 26px; margin-bottom: 11px; }
+  ul.clean li::before {
+    content: "\203A"; position: absolute; inset-inline-start: 6px; top: -1px;
+    color: var(--gold); font-weight: 900; font-size: 20px; line-height: 1;
+  }
+  .ban li::before { content: "\2715"; color: var(--nk-red-bright); font-size: 15px; top: 3px; }
+  .allow li::before { content: "\2713"; color: var(--green-tag); font-size: 15px; top: 3px; }
+  .card ul.clean b { display: inline; color: inherit; margin: 0; }
+
+  .callout {
+    margin-top: 18px;
+    border-inline-start: 4px solid var(--gold);
+    background: rgba(202,167,74,0.1);
+    padding: 14px 18px; border-radius: 0 8px 8px 0;
+    font-weight: 500;
+  }
+  .danger { border-inline-start-color: var(--nk-red-bright); background: rgba(224,57,43,0.12); }
+
+  .golden-rule {
+    text-align: center; font-weight: 900; font-size: clamp(1.5rem, 4vw, 2.6rem);
+    color: var(--gold); margin: 40px auto; max-width: 1100px; padding: 0 20px;
+    line-height: 1.3; letter-spacing: 0.01em;
+  }
+
   /* ===== Language toggle ===== */
   .lang-en { display: none !important; }
   body.en .lang-he { display: none !important; }
@@ -249,7 +302,7 @@
   @media print { .archive-btn { display: none; } }
 
   @media (max-width: 760px) {
-    .factions { grid-template-columns: 1fr; }
+    .factions, .rule-grid { grid-template-columns: 1fr; }
   }
 
   /* ===== Print ===== */
@@ -302,6 +355,124 @@
           <p style="margin:6px 0">
           <a href="https://waze.com/ul?ll=32.099349,34.913909&amp;navigate=yes" target="_blank" rel="noopener"><span class="lang-he">פתיחת ניווט ב‑Waze</span><span class="lang-en">Open navigation in Waze</span></a></p>
         </div>
+      </div>
+    </section>
+
+    <!-- Special rules -->
+    <section id="special">
+      <h2 class="sec-title"><span class="num">&#128683;</span> <span class="lang-he">חוקים מיוחדים</span><span class="lang-en">Special Rules</span></h2>
+      <div class="rule-grid">
+        <div class="rule-block card">
+          <h3><span class="dot"></span> <span class="lang-he">איסורים</span><span class="lang-en">Prohibited</span></h3>
+          <ul class="clean ban">
+            <li><span class="lang-he">איסור מוחלט על פירוטכניקה (למשל, טאגים).</span><span class="lang-en">Absolute ban on pyrotechnics (e.g., tags).</span></li>
+            <li><span class="lang-he">איסור מוחלט על שימוש ברחפנים.</span><span class="lang-en">Absolute ban on using drones.</span></li>
+            <li><span class="lang-he">איסור על שימוש ברימון Mike40 ודומיו.</span><span class="lang-en">Ban on using the Mike40 grenade and similar.</span></li>
+          </ul>
+        </div>
+        <div class="rule-block card">
+          <h3><span class="dot"></span> <span class="lang-he">מותר</span><span class="lang-en">Allowed</span></h3>
+          <ul class="clean allow">
+            <li><span class="lang-he">רימוני מטול רגילים (BB&nbsp;Shower) — מותרים.</span><span class="lang-en">Standard launcher grenades (BB&nbsp;Shower) — allowed.</span></li>
+            <li><span class="lang-he">רימוני יד על גז — מותרים. הריגה מפגיעת BB בלבד, לא מקרבה.</span><span class="lang-en">Gas hand grenades — allowed. Kills only from a BB hit, not from proximity.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout danger">
+        <b><span class="lang-he">התנהלות עם נשק חם:</span><span class="lang-en">Handling live weapons:</span></b> <span class="lang-he">נשק חם יהיה בנרתיק בלבד. לא יוצא מהנרתיק משום סיבה
+        (למעט מצבי חירום). לא להראות משהו — כלום.</span><span class="lang-en">Live weapons must stay holstered only. Not drawn from the holster for any reason (except emergencies). Don't show anything — nothing.</span>
+      </div>
+    </section>
+
+    <!-- Energy / classification table -->
+    <section id="energy">
+      <h2 class="sec-title"><span class="num">&#9889;</span> <span class="lang-he">בטיחות — חוקי אנרגיה והגבלת סיווג</span><span class="lang-en">Safety — Energy Rules &amp; Classification Limits</span></h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th><span class="lang-he">סיווג</span><span class="lang-en">Class</span></th>
+              <th><span class="lang-he">סוג הכלי</span><span class="lang-en">Weapon type</span></th>
+              <th><span class="lang-he">אנרגיה מרבית</span><span class="lang-en">Max energy</span><br /><small>[J]</small></th>
+              <th><span class="lang-he">משקל כדור מרבי</span><span class="lang-en">Max BB weight</span><br /><small>[g]</small></th>
+              <th><span class="lang-he">טווח בטיחות</span><span class="lang-en">Safety range</span><br /><small>[m]</small></th>
+              <th><span class="lang-he">מצב ירי</span><span class="lang-en">Fire mode</span></th>
+              <th><span class="lang-he">הגבלת קצב ירי</span><span class="lang-en">Rate of fire limit</span><br /><small>[rps]</small></th>
+              <th><span class="lang-he">הערות</span><span class="lang-en">Notes</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="cls">1</span></td>
+              <td><span class="lang-he">תת־מקלע (לש"ב)</span><span class="lang-en">SMG (submachine gun)</span></td>
+              <td>1.2</td>
+              <td><span class="lang-he">ללא הגבלה</span><span class="lang-en">No limit</span></td>
+              <td>1</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note">—</td>
+            </tr>
+            <tr>
+              <td><span class="cls">2</span></td>
+              <td><span class="lang-he">סער</span><span class="lang-en">Assault rifle</span></td>
+              <td>1.7</td>
+              <td><span class="lang-he">ללא הגבלה</span><span class="lang-en">No limit</span></td>
+              <td>10</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note">—</td>
+            </tr>
+            <tr>
+              <td><span class="cls">3</span></td>
+              <td><span class="lang-he">מקלע כבד</span><span class="lang-en">Support/heavy MG</span></td>
+              <td>2.0</td>
+              <td>0.32</td>
+              <td>15</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note"><span class="lang-he">קת מלאה, קנה באורך מלא, תחמושת דו־רגלים/תוף.</span><span class="lang-en">Full stock, full-length barrel, bipod/drum ammo.</span></td>
+            </tr>
+            <tr>
+              <td><span class="cls">4</span></td>
+              <td><span class="lang-he">קלע (DMR)</span><span class="lang-en">Marksman (DMR)</span></td>
+              <td>2.0 – 2.2</td>
+              <td>0.40</td>
+              <td>15 / 20</td>
+              <td class="mode"><span class="lang-he">בודדת</span><span class="lang-en">Semi only</span></td>
+              <td>—</td>
+              <td class="note"><span class="lang-he">חייב להיות נעול לבודדת.</span><span class="lang-en">Must be locked to semi-auto.</span></td>
+            </tr>
+            <tr>
+              <td><span class="cls">5</span></td>
+              <td><span class="lang-he">צלף</span><span class="lang-en">Sniper</span></td>
+              <td>3.3</td>
+              <td>0.48</td>
+              <td>30</td>
+              <td class="mode"><span class="lang-he">בודדת בלבד</span><span class="lang-en">Semi only</span></td>
+              <td>—</td>
+              <td class="note"><span class="lang-he">רובה בריחי בלבד. כדור 0.48 גרם מחייב תוספת 5 מ׳ לטווח הבטיחות.</span><span class="lang-en">Bolt-action rifle only. 0.48 g BBs require +5 m extra safety distance.</span></td>
+            </tr>
+          </tbody>
+          <caption><span class="lang-he">כדורי פלסטיק בלבד · משקל כדור מרבי 0.48 גרם בלבד · חובה להכיר ולכבד את טווחי הבטיחות.</span><span class="lang-en">Plastic BBs only · Max BB weight 0.48 g only · You must know and respect the safety ranges.</span></caption>
+        </table>
+      </div>
+
+      <div class="callout">
+        <b><span class="lang-he">חוקי מחסניות:</span><span class="lang-en">Magazine rules:</span></b>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="lang-he">מחסניות <b>מיד-קאפ בלבד</b> — למעט מקלעים, להם מותרות מחסניות תוף.</span><span class="lang-en">Mid-cap magazines <b>only</b> — except for MGs, which may use drum magazines.</span></li>
+          <li><span class="lang-he">המחסנית חייבת להיות ריאליסטית לכלי שבו היא משמשת.</span><span class="lang-en">The magazine must be realistic for the weapon it is used in.</span></li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <b><span class="lang-he">דרישות סיווג וציוד:</span><span class="lang-en">Classification &amp; equipment requirements:</span></b>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="lang-he">סיווג 3 — נדרש כלי שהוא רפליקה של מקלע כבד.</span><span class="lang-en">Class 3 — requires a weapon that is a replica of a support/heavy MG.</span></li>
+          <li><span class="lang-he">סיווג 4 ומעלה — נדרש כלי שהוא רפליקה של רובה קלע/צלף.</span><span class="lang-en">Class 4 and above — requires a weapon that is a replica of a marksman/sniper rifle.</span></li>
+          <li><span class="lang-he">רובה שיורה בקצב גבוה מהמותר יקבל תוספת של <b>10 מטר</b> לטווח הבטיחות.</span><span class="lang-en">A rifle firing above the allowed rate gets an added <b>10 m</b> to its safety range.</span></li>
+          <li><span class="lang-he">רובה צלפים בסיווג 5 חייב כוונת מגדילה עם זום של <b>לפחות ‎×3</b>.</span><span class="lang-en">A class 5 sniper rifle must have a magnifying optic with at least <b>×3</b> zoom.</span></li>
+        </ul>
       </div>
     </section>
 
@@ -477,6 +648,27 @@
         <p class="sign"><span class="lang-he">כישלון הוא לא בלקסיקון! — קומרד ג'נרל נו פארק אינג</span><span class="lang-en">Failure is not in the lexicon! — Comrade General No Park Ing</span></p>
       </div>
     </section>
+
+    <!-- Hit rules -->
+    <section id="hits">
+      <h2 class="sec-title"><span class="num">&#127919;</span> <span class="lang-he">חוקי פגיעות</span><span class="lang-en">Hit Rules</span></h2>
+      <div class="card">
+        <ul class="clean">
+          <li><span class="lang-he">שחקן שנפגע נדרש להכריז בקול שהוא נפגע, לסמן עצמו בסימון ברור ונראה לעין,
+              ולהתקדם לנקודת הריספאון השייכת לכוח שלו.</span><span class="lang-en">A player who is hit must call out loud that he's hit, mark himself with a clear, visible marker, and move to the respawn point belonging to his force.</span></li>
+          <li><span class="lang-he">שחקן בדרכו לריספאון <b>אינו</b> יכול ליצור קשר עם הכוח שלו לשום מטרה
+              (למעט חירום), גם לא כדי לעדכן שהוא נפגע.</span><span class="lang-en">A player on his way to respawn <b>may not</b> contact his force for any purpose (except emergencies), not even to report that he was hit.</span></li>
+          <li><span class="lang-he">אין לעבור באזור שבו מתנהל קרב כדי להגיע לריספאון — אם נדרש, יש לעקוף את הקרב.</span><span class="lang-en">Don't pass through an area where a firefight is happening to reach respawn — if needed, go around the fight.</span></li>
+          <li><span class="lang-he">פגיעה בכלי, או בכל ציוד אחר שהשחקן נושא (למשל תיק) — נחשבת כפגיעה בשחקן,
+              גם אם יש לו כלי נוסף.</span><span class="lang-en">A hit to the weapon, or any other gear the player carries (e.g., a bag) — counts as a hit on the player, even if he has another weapon.</span></li>
+          <li><span class="lang-he">פגיעה בכלי/תיק כשהם <b>אינם</b> על השחקן — אינה נחשבת (ואינה משביתה ציוד).</span><span class="lang-en">A hit to a weapon/bag when they are <b>not</b> on the player — does not count (and does not disable gear).</span></li>
+          <li><span class="lang-he">אש ידידותית — נחשבת כפגיעה.</span><span class="lang-en">Friendly fire — counts as a hit.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Golden rule banner -->
+    <div class="golden-rule"><span class="lang-he">כל מה שלא נאסר במפורש — מותר.</span><span class="lang-en">Anything not explicitly prohibited — is allowed.</span></div>
 
   </main>
 
