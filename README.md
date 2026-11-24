@@ -2,7 +2,7 @@
 
 The site served at **airsoft.munkys.dev**. The **current game** is featured on the main page, and an **Archive** button (top-left) opens past scenarios.
 
-a US task force races to rescue the sole surviving VIP).
+> Current featured game: **סיאפריפריאנג** (North–South Korea border, Dec 2026 — a North Korean special force raids the border city of *Hofauphning* to capture a US delegation; a US task force races to rescue the sole surviving VIP).
 
 ## Structure
 ```
