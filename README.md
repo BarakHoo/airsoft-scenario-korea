@@ -1,23 +1,53 @@
-# Siapripriang — Airsoft Scenario
+# Brigade Airsoft Games — Scenario Hub
 
-A single-file, bilingual (Hebrew / English) scenario briefing page for a **Brigade Airsoft Games** event.
+The site served at **airsoft.munkys.dev**. The **current game** is featured on the main page, and an **Archive** button (top-left) opens past scenarios.
 
-> **North–South Korea border · December 2026** — a North Korean special force raids the border city of *Hofauphning* to capture an American delegation; a US task force races to rescue the sole surviving VIP. The city: **Siapripriang** (a pun on "peak of the periphery").
+> Current featured game: **Siapripriang** (North–South Korea border, Dec 2026 — a North Korean special force raids the border city of *Hofauphning* to capture a US delegation; a US task force races to rescue the sole surviving VIP. "Siapripriang" is a pun on "peak of the periphery").
+
+## Structure
+```
+/                      -> current game (featured)        -> index.html
+/archive/              -> archive index (list of games)  -> archive/index.html
+/archive/<game>/       -> an archived game               -> archive/<game>/index.html
+```
+
+Archived games:
+- **Getting High on Your Own Supply** (Colombia 1984) — `archive/getting-high-on-your-own-supply/`
 
 ## Features
-- **Single `index.html`** — pure HTML/CSS/JS, no build step, no dependencies. Host anywhere (GitHub Pages works great).
-- **Bilingual HE/EN toggle** — one button flips `dir`/`lang` and swaps all content; Hebrew is RTL, English is LTR.
-- **Faction theme** — North Korea red vs. USA blue over a dark tactical base, built with CSS custom properties (easy to re-skin).
-- **Print-friendly** — dedicated `@media print` styles for handing out paper briefs.
+- **Single `index.html` per game** — pure HTML/CSS/JS, no build step, no dependencies.
+- **Bilingual HE/EN toggle** — one button flips `dir`/`lang` and swaps all content (RTL/LTR).
+- **Faction theme** — North Korea red vs. USA blue over a dark tactical base (CSS custom properties, easy to re-skin).
+- **Print-friendly** — dedicated `@media print` styles for paper briefs.
+- **Archive hub** — featured current game + a card-based archive of past games.
 
-## Sections
-- Operational background / story
-- The forces (USA — Maj. Gen. Johnson McMerica · North Korea — Comrade Gen. No Park Ing)
-- Rounds (1, 2A, 2B, 3)
-- Commanders' speeches + mission orders (primary / secondary / rules placeholders)
+## Add the next game later
+1. Move the current `index.html` (+ its assets) into `archive/<old-game-slug>/`.
+2. Add a card for it in `archive/index.html`.
+3. Drop the new game's `index.html` (+ assets) at the repo root.
+4. Commit & push, then deploy (below).
 
 ## Local preview
-Just open `index.html` in a browser.
+Open `index.html` in a browser. For correct relative `/archive/` links, serve the folder:
+```powershell
+python -m http.server 8080
+# then visit http://localhost:8080/
+```
 
-## Publish on GitHub Pages
-Settings → Pages → Build from branch → `main` / root.
+## Deploy to airsoft.munkys.dev (Lightsail + Nginx)
+```bash
+# one-time: clone into the web root
+sudo rm -rf /var/www/airsoft && sudo git clone https://github.com/BarakHoo/airsoft-scenario-korea.git /var/www/airsoft
+
+# on each update
+cd /var/www/airsoft && sudo git pull
+```
+Use the provided `nginx/airsoft.conf` as `/etc/nginx/sites-available/airsoft`, then:
+```bash
+sudo ln -sf /etc/nginx/sites-available/airsoft /etc/nginx/sites-enabled/airsoft
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d airsoft.munkys.dev   # HTTPS
+```
+
+> You can also host on **GitHub Pages** (Settings → Pages → `main` / root):
+> https://barakhoo.github.io/airsoft-scenario-korea/

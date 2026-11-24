@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Getting High on Your Own Supply — Brigade Airsoft Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --olive-900: #1b2016;
+    --olive-800: #262c1d;
+    --olive-700: #333b26;
+    --olive-600: #4a5533;
+    --olive-500: #6b7a46;
+    --sand: #e8dfc5;
+    --sand-dim: #bdb393;
+    --paper: #f3eede;
+    --blood: #8c2f24;
+    --blood-bright: #c0392b;
+    --gold: #caa74a;
+    --green-tag: #3fa34d;
+    --yellow-tag: #e0c23a;
+    --blue-tag: #2d8fd6;
+    --line: rgba(232, 223, 197, 0.18);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--sand);
+    background:
+      radial-gradient(circle at 20% 10%, rgba(74, 85, 51, 0.35), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(42, 48, 31, 0.6), transparent 50%),
+      linear-gradient(160deg, var(--olive-900), #11140d 70%);
+    background-attachment: fixed;
+    line-height: 1.6;
+  }
+
+  .stencil {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 70px 20px 60px;
+    border-bottom: 3px solid var(--blood);
+    background:
+      linear-gradient(180deg, rgba(17, 20, 13, 0.55), rgba(17, 20, 13, 0.85)),
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.12) 0 12px, rgba(255,255,255,0.02) 12px 24px);
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 4px);
+    pointer-events: none; opacity: 0.4;
+  }
+  .brigade {
+    font-size: clamp(14px, 2.5vw, 20px);
+    color: var(--sand-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(34px, 7vw, 78px);
+    line-height: 0.98;
+    margin: 0;
+    color: var(--sand);
+    text-shadow: 3px 3px 0 var(--blood), 6px 6px 18px rgba(0,0,0,0.6);
+  }
+  .hero .sub-he {
+    margin-top: 18px;
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 900;
+    color: var(--gold);
+  }
+  .meta-strip {
+    display: flex; flex-wrap: wrap; gap: 10px 26px;
+    justify-content: center; margin-top: 22px;
+    font-size: 15px; color: var(--sand-dim);
+  }
+  .meta-strip span { display: inline-flex; align-items: center; gap: 8px; }
+  .meta-strip b { color: var(--sand); }
+
+  /* ===== Layout ===== */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  section { margin-top: 48px; }
+
+  .sec-title {
+    display: flex; align-items: center; gap: 14px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: clamp(22px, 3.5vw, 32px);
+    color: var(--sand);
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--line);
+  }
+  .sec-title .num {
+    flex: 0 0 auto;
+    background: var(--blood);
+    color: var(--paper);
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 6px;
+    font-size: 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .card {
+    background: linear-gradient(160deg, rgba(51,59,38,0.85), rgba(27,32,22,0.92));
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .intro-card { font-size: 17px; }
+  .intro-card .year {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--gold); font-weight: 700; letter-spacing: 0.1em;
+    font-size: 15px; display: block; margin-bottom: 6px;
+  }
+
+  /* ===== Teams ===== */
+  .teams { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .team {
+    border-radius: 12px; padding: 22px 24px;
+    box-shadow: var(--shadow); border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .team h3 {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.06em; font-size: 24px; margin: 0 0 4px;
+  }
+  .team .role { font-weight: 900; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .team.defender { background: linear-gradient(160deg, rgba(224,194,58,0.16), rgba(27,32,22,0.92)); border-top: 4px solid var(--yellow-tag); }
+  .team.attacker { background: linear-gradient(160deg, rgba(63,163,77,0.16), rgba(27,32,22,0.92)); border-top: 4px solid var(--green-tag); }
+  .team.defender .role { color: var(--yellow-tag); }
+  .team.attacker .role { color: var(--green-tag); }
+  .team ul { margin: 14px 0 0; padding-inline-start: 20px; }
+  .team li { margin-bottom: 8px; }
+  .team h4 {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 15px; color: var(--gold);
+    margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ===== Table ===== */
+  .table-scroll { overflow-x: auto; border-radius: 12px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; background: rgba(17,20,13,0.6); }
+  caption { caption-side: bottom; font-size: 13px; color: var(--sand-dim); padding: 10px; text-align: right; }
+  th, td { padding: 12px 14px; text-align: center; border-bottom: 1px solid var(--line); }
+  thead th {
+    background: var(--olive-700);
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 14px; color: var(--sand);
+    position: sticky; top: 0;
+  }
+  tbody tr:nth-child(odd) { background: rgba(74,85,51,0.1); }
+  tbody tr:hover { background: rgba(202,167,74,0.12); }
+  .cls {
+    display: inline-grid; place-items: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--blood); color: var(--paper); font-weight: 900;
+  }
+  td.note { text-align: right; font-size: 14px; color: var(--sand-dim); }
+  .mode { font-size: 13px; color: var(--sand-dim); }
+
+  /* ===== Rule lists ===== */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rule-block h3 {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 19px; margin: 0 0 12px;
+    color: var(--gold); display: flex; align-items: center; gap: 10px;
+  }
+  .rule-block h3 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blood-bright); }
+  ul.clean { list-style: none; margin: 0; padding: 0; }
+  ul.clean li {
+    position: relative; padding-inline-start: 26px; margin-bottom: 11px;
+  }
+  ul.clean li::before {
+    content: "›"; position: absolute; inset-inline-start: 6px; top: -1px;
+    color: var(--gold); font-weight: 900; font-size: 20px; line-height: 1;
+  }
+  .ban li::before { content: "✕"; color: var(--blood-bright); font-size: 15px; top: 3px; }
+  .allow li::before { content: "✓"; color: var(--green-tag); font-size: 15px; top: 3px; }
+
+  .callout {
+    margin-top: 18px;
+    border-inline-start: 4px solid var(--gold);
+    background: rgba(202,167,74,0.1);
+    padding: 14px 18px; border-radius: 0 8px 8px 0;
+    font-weight: 500;
+  }
+  .danger { border-inline-start-color: var(--blood-bright); background: rgba(192,57,43,0.12); }
+
+  /* ===== Legend ===== */
+  .legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .legend .item {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(17,20,13,0.5); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .chip {
+    flex: 0 0 auto; width: 40px; height: 40px; border-radius: 8px;
+    display: grid; place-items: center; font-weight: 900; color: #fff;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px;
+  }
+  .chip.p { background: var(--blue-tag); }
+  .chip.r { background: var(--green-tag); color: #fff; }
+  .chip.l { background: #f3eede; color: #222; }
+  .chip.line { background: transparent; }
+  .chip.line::after { content: ""; width: 26px; height: 4px; background: var(--blood-bright); border-radius: 2px; }
+  .chip.attack { background: var(--green-tag); }
+  .chip.defend { background: var(--yellow-tag); color: #222; }
+  .legend .item b { display: block; font-size: 16px; color: var(--sand); }
+  .legend .item small { color: var(--sand-dim); }
+
+  /* ===== Steps (lab conquest) ===== */
+  .steps { counter-reset: step; display: grid; gap: 14px; }
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: rgba(17,20,13,0.5); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 18px;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step, hebrew);
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--blood); color: var(--paper); font-weight: 900;
+    display: grid; place-items: center; font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  .golden-rule {
+    text-align: center; font-weight: 900; font-size: clamp(1.5rem, 4vw, 2.6rem);
+    color: var(--gold); margin: 40px auto; max-width: 1100px; padding: 0 20px;
+    line-height: 1.3; letter-spacing: 0.01em;
+  }
+  body.en .step::before { content: counter(step, lower-alpha); }
+
+  footer {
+    text-align: center; padding: 34px 20px 50px;
+    color: var(--sand-dim); border-top: 2px solid var(--line);
+    font-size: 14px;
+  }
+  footer .flag { font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+
+  /* ===== Logistics / details ===== */
+  .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  .schedule { list-style: none; margin: 10px 0 0; padding: 0; }
+  .schedule li {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0; border-bottom: 1px dashed var(--line);
+  }
+  .schedule li:last-child { border-bottom: none; }
+  .schedule .time {
+    flex: 0 0 auto; min-width: 64px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700;
+    color: var(--gold); font-size: 18px;
+  }
+  .where b { display: block; color: var(--sand); font-size: 17px; margin-bottom: 4px; }
+  .where a { color: var(--blue-tag); word-break: break-all; }
+  .where .date {
+    display: inline-block; margin-top: 10px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: 0.06em;
+    background: var(--blood); color: var(--paper);
+    padding: 4px 12px; border-radius: 6px; font-size: 15px;
+  }
+
+  @media (max-width: 760px) {
+    .teams, .rule-grid, .legend, .details-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Images ===== */
+  .figure {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    background: rgba(17,20,13,0.6);
+  }
+  .figure img { display: block; width: 100%; height: auto; }
+  .figure figcaption {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--sand-dim);
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Story + Javier portrait */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 28px;
+    align-items: start;
+  }
+  .boss-stack {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+  }
+  .boss-figure {
+    position: relative;
+    border-top: 4px solid var(--blood);
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .boss-figure img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center top;
+    background: #11140d;
+  }
+  .boss-figure .tag {
+    position: absolute; top: 10px; inset-inline-start: 10px;
+    background: var(--blood); color: var(--paper);
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 12px;
+    padding: 4px 10px; border-radius: 4px;
+    z-index: 1;
+  }
+
+  /* Map figure */
+  .map-figure { margin-bottom: 22px; }
+  .map-figure img { max-height: 620px; object-fit: contain; width: 100%; background: #11140d; }
+  .map-actions {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center; margin: -8px 0 22px;
+  }
+  .map-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; cursor: pointer;
+    background: var(--blood); color: var(--paper);
+    border: 1px solid var(--blood); border-radius: 6px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 14px; font-weight: 700;
+    padding: 10px 18px; text-decoration: none;
+    transition: filter 0.15s ease;
+  }
+  .map-btn:hover { filter: brightness(1.15); }
+  .map-btn#mapDownload { background: transparent; color: var(--sand); }
+
+  @media (max-width: 720px) {
+    .story-grid { grid-template-columns: 1fr; }
+    .boss-stack { flex-direction: column; max-width: 300px; margin: 0 auto; }
+    .boss-figure { flex: 0 0 auto; }
+    .boss-figure img { height: auto; }
+  }
+
+  /* ===== Language toggle ===== */
+  .lang-en { display: none !important; }
+  body.en .lang-he { display: none !important; }
+  body.en .lang-en { display: inline !important; }
+
+  .lang-toggle {
+    position: fixed; top: 16px; inset-inline-end: 16px; z-index: 1000;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 14px;
+    background: var(--blood); color: var(--paper);
+    border: 1px solid var(--gold); border-radius: 8px;
+    padding: 9px 16px; cursor: pointer;
+    box-shadow: var(--shadow); transition: background 0.2s;
+  }
+  .lang-toggle:hover { background: var(--blood-bright); }
+
+  /* ===== Lightbox ===== */
+  .clickable-img { cursor: zoom-in; }
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.9);
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 18px; padding: 30px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 92vw; max-height: 80vh;
+    border-radius: 12px; border: 1px solid var(--gold);
+    box-shadow: var(--shadow);
+  }
+  .lightbox .caption {
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: 0.04em;
+    color: var(--sand); font-size: clamp(16px, 2.5vw, 22px);
+    text-align: center; max-width: 92vw;
+  }
+  .lightbox .close {
+    position: absolute; top: 18px; inset-inline-end: 22px;
+    background: none; border: none; color: var(--sand);
+    font-size: 40px; line-height: 1; cursor: pointer;
+  }
+  .lightbox .close:hover { color: var(--blood-bright); }
+
+  /* ===== Print ===== */
+  @media print {
+    body { background: #fff; color: #1c1c1c; }
+    .hero { background: #1b2016; color: #fff; border-color: #8c2f24; }
+    .card, .team, .step, .legend .item, table { box-shadow: none; }
+    section { break-inside: avoid; }
+    .sec-title, .team h3, .rule-block h3 { color: #1c1c1c; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+
+  <button id="langToggle" class="lang-toggle" type="button" aria-label="Toggle language">
+    <span class="lang-he">EN · English</span>
+    <span class="lang-en">HE · עברית</span>
+  </button>
+
+  <a href="../" style="position:fixed;top:16px;inset-inline-start:16px;z-index:1000;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:14px;background:var(--gold,#caa74a);color:#1b2016;border:1px solid var(--gold,#caa74a);border-radius:8px;padding:9px 16px;box-shadow:0 10px 30px rgba(0,0,0,0.45);">
+    <span aria-hidden="true">🗂</span>
+    <span class="lang-he">ארכיון</span><span class="lang-en">Archive</span>
+  </a>
+
+  <header class="hero">
+    <div class="brigade stencil">Brigade Airsoft Games Presents</div>
+    <h1>Getting High on<br />Your Own Supply</h1>
+    <div class="sub-he"><span class="lang-he">קולומביה 1984</span><span class="lang-en">Colombia 1984</span></div>
+    <div class="meta-strip">
+      <span>🎯 <b><span class="lang-he">תרחיש:</span><span class="lang-en">Scenario:</span></b> <span class="lang-he">תקיפה והגנה על מעבדות</span><span class="lang-en">Attack &amp; defense of labs</span></span>
+      <span>🟩 <b><span class="lang-he">תוקפים:</span><span class="lang-en">Attackers:</span></b> <span class="lang-he">קרטל ראול</span><span class="lang-en">Raúl Cartel</span></span>
+      <span>🟨 <b><span class="lang-he">מגנים:</span><span class="lang-en">Defenders:</span></b> <span class="lang-he">קרטל חבייר</span><span class="lang-en">Javier Cartel</span></span>
+      <span>💊 <b><span class="lang-he">יעד:</span><span class="lang-en">Objective:</span></b> <span class="lang-he">שקיות הקוק</span><span class="lang-en">The coke bags</span></span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Logistics / details -->
+    <section id="details">
+      <h2 class="sec-title"><span class="num">!</span> <span class="lang-he">פרטי המשחק</span><span class="lang-en">Game Details</span></h2>
+      <div class="details-grid">
+        <div class="card where">
+          <b><span class="lang-he">מיקום</span><span class="lang-en">Location</span></b>
+          <span class="lang-he">המשחק יתרחש ביער גבעת כח, צמוד להיי פארק שוהם / מחצבת ברקת.</span><span class="lang-en">The game takes place in Givat Koach forest, next to High Park Shoham / Barkat Quarry.</span>
+          <br />
+          <b><span class="lang-he">הוראות הגעה</span><span class="lang-en">Directions</span></b>
+          <p style="margin:6px 0"><b><span class="lang-he">גישה ראשית - מומלץ ג'יפ או רכב גבוה</span><span class="lang-en">Main access - jeep or high vehicle recommended</span></b><br />
+          <span class="lang-he">נוסעים לנקודה שהווייז מראה, פונים שמאלה בכניסה למחצבה. נוסעים ישר עד שמגיעים לפנייה שמאלה. ממשיכים לאחר הפנייה עד הפיצול.</span><span class="lang-en">Drive to the point Waze shows, turn left at the quarry entrance. Continue straight until you reach a left turn. Keep going past the turn until the fork.</span><br />
+          <a href="https://waze.com/ul?ll=32.015016,34.967412&navigate=yes" target="_blank" rel="noopener"><span class="lang-he">פתיחת ניווט ב‑Waze</span><span class="lang-en">Open navigation in Waze</span></a></p>
+          <p style="margin:6px 0"><b><span class="lang-he">גישה שנייה</span><span class="lang-en">Second access</span></b><br />
+          <span class="lang-he">שביל הגישה הראשי מתאים יותר לרכבים גבוהים/רכבי שטח. מי שאין לו רכב שמתאים לנסיעה יוכל להיכנס מהגישה השנייה לשטח: </span><span class="lang-en">The main access road is better suited for high clearance / off‑road vehicles. If your vehicle isn't suitable, you can enter from the second access point: </span><a href="https://waze.com/ul?ll=32.035387,34.966706&navigate=yes" target="_blank" rel="noopener"><span class="lang-he">ניווט לגישה השנייה ב‑Waze</span><span class="lang-en">Navigate to the second access point in Waze</span></a><br />
+          <span class="lang-he">נוסעים בשביל ישר עד שמגיעים לאותו פיצול, ולוקחים ימינה.</span><span class="lang-en">Drive straight along the path until you reach the same fork, then take a right.</span></p>
+                   <span class="date">17.10.2026</span>
+        </div>
+        <div class="card">
+          <b style="display:block;color:var(--sand);font-size:17px;margin-bottom:4px"><span class="lang-he">לוח זמנים</span><span class="lang-en">Schedule</span></b>
+          <ul class="schedule">
+            <li><span class="time">08:00</span> <span class="lang-he">הגעה לשטח והתארגנות</span><span class="lang-en">Arrival on site &amp; setup</span></li>
+            <li><span class="time">08:30</span> <span class="lang-he">תדריך</span><span class="lang-en">Briefing</span></li>
+            <li><span class="time">09:00</span> <span class="lang-he">תחילת משחק</span><span class="lang-en">Game start</span></li>
+            <li><span class="time">12:00</span> <span class="lang-he">סיום משחק</span><span class="lang-en">Game end</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout danger">
+        <span class="lang-he">קבוצות ושחקנים שיאחרו ולא יגיעו לתדריך בזמן ללא סיבה מוצדקת יצאו מהקבוצה ולא יוזמנו
+        למשחקים הבאים. אנחנו לא מחזיקים אף אחד בכוח.</span><span class="lang-en">Teams and players who arrive late to the briefing without a justified reason will be removed from the group and will not be invited to future games. We don't hold anyone by force.</span>
+      </div>
+    </section>
+
+    <!-- Special rules -->
+    <section id="special">
+      <h2 class="sec-title"><span class="num">1</span> <span class="lang-he">חוקים מיוחדים</span><span class="lang-en">Special Rules</span></h2>
+      <div class="rule-grid">
+        <div class="rule-block card">
+          <h3><span class="dot"></span> <span class="lang-he">איסורים</span><span class="lang-en">Prohibited</span></h3>
+          <ul class="clean ban">
+            <li><span class="lang-he">איסור מוחלט על פירוטכניקה (למשל, טאגים).</span><span class="lang-en">Absolute ban on pyrotechnics (e.g., tags).</span></li>
+            <li><span class="lang-he">איסור מוחלט על שימוש ברחפנים.</span><span class="lang-en">Absolute ban on using drones.</span></li>
+            <li><span class="lang-he">איסור על שימוש ברימון Mike40 ודומיו.</span><span class="lang-en">Ban on using the Mike40 grenade and similar.</span></li>
+          </ul>
+        </div>
+        <div class="rule-block card">
+          <h3><span class="dot"></span> <span class="lang-he">מותר</span><span class="lang-en">Allowed</span></h3>
+          <ul class="clean allow">
+            <li><span class="lang-he">רימוני מטול רגילים (BB&nbsp;Shower) — מותרים.</span><span class="lang-en">Standard launcher grenades (BB&nbsp;Shower) — allowed.</span></li>
+            <li><span class="lang-he">רימוני יד על גז — מותרים. הריגה מפגיעת BB בלבד, לא מקרבה.</span><span class="lang-en">Gas hand grenades — allowed. Kills only from a BB hit, not from proximity.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout danger">
+        <b><span class="lang-he">התנהלות עם נשק חם:</span><span class="lang-en">Handling live weapons:</span></b> <span class="lang-he">נשק חם יהיה בנרתיק בלבד. לא יוצא מהנרתיק משום סיבה
+        (למעט מצבי חירום). לא להראות משהו — כלום.</span><span class="lang-en">Live weapons must stay holstered only. Not drawn from the holster for any reason (except emergencies). Don't show anything — nothing.</span>
+      </div>
+    </section>
+
+    <!-- Energy / classification table -->
+    <section id="energy">
+      <h2 class="sec-title"><span class="num">2</span> <span class="lang-he">בטיחות — חוקי אנרגיה והגבלת סיווג</span><span class="lang-en">Safety — Energy Rules &amp; Classification Limits</span></h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th><span class="lang-he">סיווג</span><span class="lang-en">Class</span></th>
+              <th><span class="lang-he">סוג הכלי</span><span class="lang-en">Weapon type</span></th>
+              <th><span class="lang-he">אנרגיה מרבית</span><span class="lang-en">Max energy</span><br /><small>[J]</small></th>
+              <th><span class="lang-he">משקל כדור מרבי</span><span class="lang-en">Max BB weight</span><br /><small>[g]</small></th>
+              <th><span class="lang-he">טווח בטיחות</span><span class="lang-en">Safety range</span><br /><small>[m]</small></th>
+              <th><span class="lang-he">מצב ירי</span><span class="lang-en">Fire mode</span></th>
+              <th><span class="lang-he">הגבלת קצב ירי</span><span class="lang-en">Rate of fire limit</span><br /><small>[rps]</small></th>
+              <th><span class="lang-he">הערות</span><span class="lang-en">Notes</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="cls">1</span></td>
+              <td><span class="lang-he">תת־מקלע (לש"ב)</span><span class="lang-en">SMG (submachine gun)</span></td>
+              <td>1.2</td>
+              <td><span class="lang-he">ללא הגבלה</span><span class="lang-en">No limit</span></td>
+              <td>1</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note">—</td>
+            </tr>
+            <tr>
+              <td><span class="cls">2</span></td>
+              <td><span class="lang-he">סער</span><span class="lang-en">Assault rifle</span></td>
+              <td>1.7</td>
+              <td><span class="lang-he">ללא הגבלה</span><span class="lang-en">No limit</span></td>
+              <td>10</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note">—</td>
+            </tr>
+            <tr>
+              <td><span class="cls">3</span></td>
+              <td><span class="lang-he">מקלע כבד</span><span class="lang-en">Support/heavy MG</span></td>
+              <td>2.0</td>
+              <td>0.32</td>
+              <td>15</td>
+              <td class="mode"><span class="lang-he">בודדת + אוטומט</span><span class="lang-en">Semi + auto</span></td>
+              <td>20</td>
+              <td class="note"><span class="lang-he">קת מלאה, קנה באורך מלא, תחמושת דו־רגלים/תוף.</span><span class="lang-en">Full stock, full-length barrel, bipod/drum ammo.</span></td>
+            </tr>
+            <tr>
+              <td><span class="cls">4</span></td>
+              <td><span class="lang-he">קלע (DMR)</span><span class="lang-en">Marksman (DMR)</span></td>
+              <td>2.0 – 2.2</td>
+              <td>0.40</td>
+              <td>15 / 20</td>
+              <td class="mode"><span class="lang-he">בודדת</span><span class="lang-en">Semi only</span></td>
+              <td>—</td>
+              <td class="note"><span class="lang-he">חייב להיות נעול לבודדת.</span><span class="lang-en">Must be locked to semi-auto.</span></td>
+            </tr>
+            <tr>
+              <td><span class="cls">5</span></td>
+              <td><span class="lang-he">צלף</span><span class="lang-en">Sniper</span></td>
+              <td>3.3</td>
+              <td>0.48</td>
+              <td>30</td>
+              <td class="mode"><span class="lang-he">בודדת בלבד</span><span class="lang-en">Semi only</span></td>
+              <td>—</td>
+              <td class="note"><span class="lang-he">רובה בריחי בלבד. כדור 0.48 גרם מחייב תוספת 5 מ׳ לטווח הבטיחות.</span><span class="lang-en">Bolt-action rifle only. 0.48 g BBs require +5 m extra safety distance.</span></td>
+            </tr>
+          </tbody>
+          <caption><span class="lang-he">כדורי פלסטיק בלבד · משקל כדור מרבי 0.48 גרם בלבד · חובה להכיר ולכבד את טווחי הבטיחות.</span><span class="lang-en">Plastic BBs only · Max BB weight 0.48 g only · You must know and respect the safety ranges.</span></caption>
+        </table>
+      </div>
+
+      <div class="callout">
+        <b><span class="lang-he">חוקי מחסניות:</span><span class="lang-en">Magazine rules:</span></b>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="lang-he">מחסניות <b>מיד-קאפ בלבד</b> — למעט מקלעים, להם מותרות מחסניות תוף.</span><span class="lang-en">Mid-cap magazines <b>only</b> — except for MGs, which may use drum magazines.</span></li>
+          <li><span class="lang-he">המחסנית חייבת להיות ריאליסטית לכלי שבו היא משמשת.</span><span class="lang-en">The magazine must be realistic for the weapon it is used in.</span></li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <b><span class="lang-he">דרישות סיווג וציוד:</span><span class="lang-en">Classification &amp; equipment requirements:</span></b>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="lang-he">סיווג 3 — נדרש כלי שהוא רפליקה של מקלע כבד.</span><span class="lang-en">Class 3 — requires a weapon that is a replica of a support/heavy MG.</span></li>
+          <li><span class="lang-he">סיווג 4 ומעלה — נדרש כלי שהוא רפליקה של רובה קלע/צלף.</span><span class="lang-en">Class 4 and above — requires a weapon that is a replica of a marksman/sniper rifle.</span></li>
+          <li><span class="lang-he">רובה שיורה בקצב גבוה מהמותר יקבל תוספת של <b>10 מטר</b> לטווח הבטיחות.</span><span class="lang-en">A rifle firing above the allowed rate gets an added <b>10 m</b> to its safety range.</span></li>
+          <li><span class="lang-he">רובה צלפים בסיווג 5 חייב כוונת מגדילה עם זום של <b>לפחות ‎×3</b>.</span><span class="lang-en">A class 5 sniper rifle must have a magnifying optic with at least <b>×3</b> zoom.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section id="story">
+      <h2 class="sec-title"><span class="num">3</span> <span class="lang-he">הרקע לסיפור</span><span class="lang-en">Background Story</span></h2>
+      <div class="story-grid">
+        <div class="card intro-card">
+          <span class="year stencil"><span class="lang-he">קולומביה · 1984</span><span class="lang-en">Colombia · 1984</span></span>
+          <span class="lang-he">לאחר ההתנקשות במנהיג הקרטל השולט בעסקי הקוק בעיר: <b>חבייר אטאחסייר</b>.
+          כל הקרטלים המתחרים מריחים הזדמנות לנשל את <b>קרטל חבייר</b> מהפסגה.
+          הם מחליטים להתאחד מאחורי המנהיג של הקרטל מס 2 בעיר: <b>ראול פנים</b>.
+          הם מחליטים להוציא כח מיוחד שיתקוף את המעבדות של חבייר במטרה לגנוב את כל הקוק.</span><span class="lang-en">After the assassination of the leader who controlled the city's coke business: <b>Javier AtaHasier</b>.
+          All the rival cartels smell an opportunity to knock <b>Javier's Cartel</b> off the top.
+          They decide to unite behind the leader of the city's #2 cartel: <b>Raúl Panim</b>.
+          They decide to deploy a special force to attack Javier's labs in order to steal all the coke.</span>
+        </div>
+        <div class="boss-stack">
+        <figure class="figure boss-figure">
+          <img src="javier.jpg" class="clickable-img" alt="Javier AtaHasier — leader of Javier's Cartel" data-caption-he="חבייר, מסטול מהסחורה של עצמו" data-caption-en="Javier, getting high on his own supply" />
+          <figcaption><span class="lang-he">חבייר אטאחסייר · מנהיג קרטל חבייר ז"ל</span><span class="lang-en">Javier AtaHasier · Leader of Javier's Cartel</span></figcaption>
+        </figure>
+        <figure class="figure boss-figure">
+          <img src="raul.jpg" class="clickable-img" alt="Raúl Panim — leader of Raúl's Cartel" data-caption-he="ראול פנים, מתכנן את המתקפה שלו על חבייר" data-caption-en="Raúl Panim, planning his attack against Javier" />
+          <figcaption><span class="lang-he">ראול פנים · מתכנן את המתקפה על קרטל חבייר</span><span class="lang-en">Raúl Panim · Planning his attack against Javier's Cartel</span></figcaption>
+        </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teams -->
+    <section id="teams">
+      <h2 class="sec-title"><span class="num">4</span> <span class="lang-he">הכוחות &amp; תסריט</span><span class="lang-en">Forces &amp; Scenario</span></h2>
+      <div class="teams">
+        <div class="team defender">
+          <div class="role"><span class="lang-he">כוח מגן</span><span class="lang-en">Defending Force</span> 🟨</div>
+          <h3><span class="lang-he">קרטל חבייר</span><span class="lang-en">Javier Cartel</span></h3>
+          <ul>
+            <li><span class="lang-he">מתחיל את המשחק באחת המעבדות ושומר על <b>3 שקיות קוק</b>.</span><span class="lang-en">Starts the game in one of the labs and guards <b>3 coke bags</b>.</span></li>
+            <li><span class="lang-he">מטרתו לשמור על שקיות קוק כמה שיותר זמן.</span><span class="lang-en">Its goal is to protect the coke bags for as long as possible.</span></li>
+            <li><span class="lang-he">המטרה: לבלום את הכוח האויב ולשמור על מעבדת הקוק הנוכחית <b>30 דקות</b>.</span><span class="lang-en">The objective: hold off the enemy force and defend the current coke lab for <b>30 minutes</b>.</span></li>
+            <li><span class="lang-he">אם המגנים מצליחים להחזיק <b>30 דקות</b> — התוקפים והמגנים מתחלפים בתפקיד ומתחילים את הסיבוב מחדש.</span><span class="lang-en">If the defenders manage to hold for <b>30 minutes</b> — attackers and defenders switch roles and start the round over.</span></li>
+          </ul>
+          <h4>🔄 <span class="lang-he">חוקי ריספאון</span><span class="lang-en">Respawn Rules</span></h4>
+          <ul>
+            <li><span class="lang-he">ריספאון מיידי אחרי הליכה של <b>לפחות 60 מ'</b> מחוץ לקרב לכיוון מנוגד
+                לריספאון של ראול.</span><span class="lang-en">Immediate respawn after walking <b>at least 60 m</b> away from the fight, in the direction opposite to Raúl's respawn.</span></li>
+            <li><span class="lang-he">לכל שחקן יש <b>2 ריספאונים</b> בהגנה על מעבדה.</span><span class="lang-en">Each player has <b>2 respawns</b> while defending a lab.</span></li>
+            <li><span class="lang-he">ריספאונים <b>לא</b> מצטברים במעבר בין מעבדות.</span><span class="lang-en">Respawns do <b>not</b> carry over between labs.</span></li>
+          </ul>
+        </div>
+        <div class="team attacker">
+          <div class="role"><span class="lang-he">כוח תוקף</span><span class="lang-en">Attacking Force</span> 🟩</div>
+          <h3><span class="lang-he">קרטל ראול</span><span class="lang-en">Raúl Cartel</span></h3>
+          <ul>
+            <li><span class="lang-he">מתחיל בנקודת הריספאון שלו ומטרתו להשתלט על המעבדות.</span><span class="lang-en">Starts at its respawn point and its goal is to seize the labs.</span></li>
+            <li><span class="lang-he">אם הכוח התוקף מצליח לכבוש מעבדה — הכוח המגן עובר למעבדה הבאה כדי להגן עליה.</span><span class="lang-en">If the attacking force manages to conquer a lab — the defending force moves to the next lab to defend it.</span></li>
+            <li><span class="lang-he">בכל פעם שהם מצליחים לגנוב שקית, הם משתמשים בקוק שבשקית וממשיכים לתקוף את המעבדה הבאה.</span><span class="lang-en">Each time they manage to steal a bag, they use the coke in it and continue attacking the next lab.</span></li>
+          </ul>
+          <h4>🔄 <span class="lang-he">חוקי ריספאון</span><span class="lang-en">Respawn Rules</span></h4>
+          <ul>
+            <li><span class="lang-he">ריספאון מיידי בהגעה לנקודת הריספאון.</span><span class="lang-en">Immediate respawn upon reaching the respawn point.</span></li>
+            <li><b><span class="lang-he">אין הגבלה</span><span class="lang-en">No limit</span></b> <span class="lang-he">על כמות הריספאונים.</span><span class="lang-en">on the number of respawns.</span></li>
+            <li><span class="lang-he">לאחר כיבוש מעבדה, נקודת הריספאון של הכוח התוקף זזה למיקום המעבדה שנכבשה.</span><span class="lang-en">After conquering a lab, the attacking force's respawn point moves to the location of the captured lab.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hit rules -->
+    <section id="hits">
+      <h2 class="sec-title"><span class="num">5</span> <span class="lang-he">חוקי פגיעות</span><span class="lang-en">Hit Rules</span></h2>
+      <div class="card">
+        <ul class="clean">
+          <li><span class="lang-he">שחקן שנפגע נדרש להכריז בקול שהוא נפגע, לסמן עצמו בסימון ברור ונראה לעין,
+              ולהתקדם לנקודת הריספאון השייכת לכוח שלו.</span><span class="lang-en">A player who is hit must call out loud that he's hit, mark himself with a clear, visible marker, and move to the respawn point belonging to his force.</span></li>
+          <li><span class="lang-he">שחקן בדרכו לריספאון <b>אינו</b> יכול ליצור קשר עם הכוח שלו לשום מטרה
+              (למעט חירום), גם לא כדי לעדכן שהוא נפגע.</span><span class="lang-en">A player on his way to respawn <b>may not</b> contact his force for any purpose (except emergencies), not even to report that he was hit.</span></li>
+          <li><span class="lang-he">אין לעבור באזור שבו מתנהל קרב כדי להגיע לריספאון — אם נדרש, יש לעקוף את הקרב.</span><span class="lang-en">Don't pass through an area where a firefight is happening to reach respawn — if needed, go around the fight.</span></li>
+          <li><span class="lang-he">פגיעה בכלי, או בכל ציוד אחר שהשחקן נושא (למשל תיק) — נחשבת כפגיעה בשחקן,
+              גם אם יש לו כלי נוסף.</span><span class="lang-en">A hit to the weapon, or any other gear the player carries (e.g., a bag) — counts as a hit on the player, even if he has another weapon.</span></li>
+          <li><span class="lang-he">פגיעה בכלי/תיק כשהם <b>אינם</b> על השחקן — אינה נחשבת (ואינה משביתה ציוד).</span><span class="lang-en">A hit to a weapon/bag when they are <b>not</b> on the player — does not count (and does not disable gear).</span></li>
+          <li><span class="lang-he">אש ידידותית — נחשבת כפגיעה.</span><span class="lang-en">Friendly fire — counts as a hit.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Golden rule banner -->
+    <div class="golden-rule"><span class="lang-he">כל מה שלא נאסר במפורש — מותר.</span><span class="lang-en">Anything not explicitly prohibited — is allowed.</span></div>
+
+    <!-- Lab conquest -->
+    <section id="conquest">
+      <h2 class="sec-title"><span class="num">6</span> <span class="lang-he">כיבוש מעבדה</span><span class="lang-en">Lab Conquest</span></h2>
+      <div class="steps">
+        <div class="step"><span class="lang-he">כל פעם שראול כובשים את המעבדה, הם זכאים לקחת <b>שקית קוק אחת.</b></span><span class="lang-en">Each time Raúl conquers the lab, they are entitled to take <b>one coke bag.</b></span></div>
+        <div class="step"><span class="lang-he">כיבוש מתבצע אחרי ניקוי המעבדה מאנשי כח חבייר וספירה של <b>60 שניות.</b></span><span class="lang-en">A conquest is completed after clearing the lab of Javier's force and a count of <b>60 seconds.</b></span></div>
+        <div class="step"><span class="lang-he">לאחר 60 שניות השקית נחשבת של כח ראול והוא רשאי לצרוך אותה.</span><span class="lang-en">After 60 seconds the bag is considered Raúl's force's and he may consume it.</span></div>
+        <div class="step"><span class="lang-he">כח ראול ממתין <b>5 דקות</b> במעבדה ואז יוצא לכיוון המעבדה הבאה.</span><span class="lang-en">Raúl's force waits <b>5 minutes</b> in the lab and then heads toward the next lab.</span></div>
+      </div>
+    </section>
+
+    <!-- Map legend -->
+    <section id="legend">
+      <h2 class="sec-title"><span class="num">7</span> <span class="lang-he">מקרא המפה</span><span class="lang-en">Map Legend</span></h2>
+      <figure class="figure map-figure">
+        <img src="game-map.png" class="clickable-img" alt="Battle zone map" data-caption-he="מפת הזירה · מעבדות, נקודות ריספאון וגבול הגזרה (קו אדום)" data-caption-en="Arena map · labs, respawn points and the zone boundary (red line)" />
+        <figcaption><span class="lang-he">מפת הזירה · מעבדות, נקודות ריספאון וגבול הגזרה (קו אדום)</span><span class="lang-en">Arena map · labs, respawn points and the zone boundary (red line)</span></figcaption>
+      </figure>
+      <div class="map-actions">
+        <button type="button" class="map-btn" id="mapZoom"><span class="lang-he">הגדל מפה</span><span class="lang-en">View map</span></button>
+        <a class="map-btn" id="mapDownload" download="arena-map.png"><span class="lang-he">הורדת מפה</span><span class="lang-en">Download map</span></a>
+      </div>
+      <div class="rule-block card">
+        <h3><span class="dot"></span> <span class="lang-he">גבולות הגזרה</span><span class="lang-en">Zone Boundaries</span></h3>
+        <ul class="clean">
+          <li><span class="lang-he">אין לצאת מגבולות הגזרה (הקו האדום במפה).</span><span class="lang-en">Do not leave the zone boundaries (the red line on the map).</span></li>
+          <li><span class="lang-he">שחקן שחוצה את הקו האדום נחשב מחוץ למשחק ועליו ללכת לריספאון.</span><span class="lang-en">A player who crosses the red line is considered out of play and must go respawn.</span></li>
+        </ul>
+      </div>
+      <div class="legend">
+        <div class="item"><span class="chip p">P</span><span><b><span class="lang-he">חניה</span><span class="lang-en">Parking</span></b><small><span class="lang-he">נקודת התכנסות / חניון</span><span class="lang-en">Gathering point / parking lot</span></small></span></div>
+        <div class="item"><span class="chip r">R</span><span><b><span class="lang-he">נקודת ריספאון</span><span class="lang-en">Respawn point</span></b><small><span class="lang-he">נקודת החזרה למשחק</span><span class="lang-en">Return-to-game point</span></small></span></div>
+        <div class="item"><span class="chip l">L</span><span><b><span class="lang-he">מעבדה</span><span class="lang-en">Lab</span></b><small><span class="lang-he">יעדי המשחק — L1 / L2 / L3</span><span class="lang-en">Game objectives — L1 / L2 / L3</span></small></span></div>
+        <div class="item"><span class="chip line"></span><span><b><span class="lang-he">קו אדום</span><span class="lang-en">Red line</span></b><small><span class="lang-he">גבול גזרה</span><span class="lang-en">Zone boundary</span></small></span></div>
+        <div class="item"><span class="chip attack"></span><span><b><span class="lang-he">ירוק</span><span class="lang-en">Green</span></b><small><span class="lang-he">תוקפים — קרטל ראול</span><span class="lang-en">Attackers — Raúl Cartel</span></small></span></div>
+        <div class="item"><span class="chip defend"></span><span><b><span class="lang-he">צהוב</span><span class="lang-en">Yellow</span></b><small><span class="lang-he">מגנים — קרטל חבייר</span><span class="lang-en">Defenders — Javier Cartel</span></small></span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="flag stencil">Brigade Airsoft Games · Javier Cartel</div>
+    <p><span class="lang-he">משחק תסריטי — נא לקרוא ולכבד את חוקי הבטיחות וטווחי האנרגיה לפני היציאה לשטח.</span><span class="lang-en">Scenario game — please read and respect the safety rules and energy ranges before heading into the field.</span></p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" id="lightboxClose" type="button" aria-label="Close">×</button>
+    <img id="lightboxImg" src="" alt="" />
+    <div class="caption" id="lightboxCaption"></div>
+  </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('langToggle');
+      var root = document.documentElement;
+      function apply(en) {
+        document.body.classList.toggle('en', en);
+        root.setAttribute('lang', en ? 'en' : 'he');
+        root.setAttribute('dir', en ? 'ltr' : 'rtl');
+        updateLightboxCaption();
+      }
+      btn.addEventListener('click', function () {
+        apply(!document.body.classList.contains('en'));
+      });
+
+      // Lightbox
+      var lightbox = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCaption = document.getElementById('lightboxCaption');
+      var lbClose = document.getElementById('lightboxClose');
+      var currentTrigger = null;
+
+      function updateLightboxCaption() {
+        if (!currentTrigger) return;
+        var en = document.body.classList.contains('en');
+        lbCaption.textContent = en
+          ? currentTrigger.getAttribute('data-caption-en')
+          : currentTrigger.getAttribute('data-caption-he');
+      }
+
+      function openLightbox(img) {
+        currentTrigger = img;
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        updateLightboxCaption();
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+
+      document.querySelectorAll('.clickable-img').forEach(function (img) {
+        img.addEventListener('click', function () { openLightbox(img); });
+      });
+
+      // Map actions: zoom (open lightbox) + download
+      var mapImg = document.querySelector('.map-figure .clickable-img');
+      var mapZoom = document.getElementById('mapZoom');
+      var mapDownload = document.getElementById('mapDownload');
+      if (mapImg && mapZoom) {
+        mapZoom.addEventListener('click', function () { openLightbox(mapImg); });
+      }
+      if (mapImg && mapDownload) {
+        mapDownload.setAttribute('href', mapImg.src);
+      }
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox || e.target === lbClose) closeLightbox();
+      });
+      lbClose.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>

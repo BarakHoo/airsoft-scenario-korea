@@ -234,6 +234,20 @@
   }
   .lang-toggle:hover { background: var(--ink-600); }
 
+  /* ===== Archive button ===== */
+  .archive-btn {
+    position: fixed; top: 16px; inset-inline-start: 16px; z-index: 1000;
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-family: "Oswald", sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 14px;
+    background: var(--gold); color: var(--ink-900);
+    border: 1px solid var(--gold); border-radius: 8px;
+    padding: 9px 16px; cursor: pointer;
+    box-shadow: var(--shadow); transition: filter 0.2s;
+  }
+  .archive-btn:hover { filter: brightness(1.12); }
+  @media print { .archive-btn { display: none; } }
+
   @media (max-width: 760px) {
     .factions { grid-template-columns: 1fr; }
   }
@@ -256,6 +270,11 @@
     <span class="lang-he">EN · English</span>
     <span class="lang-en">HE · עברית</span>
   </button>
+
+  <a class="archive-btn" href="archive/" aria-label="Previous games archive">
+    <span aria-hidden="true">🗂</span>
+    <span class="lang-he">ארכיון</span><span class="lang-en">Archive</span>
+  </a>
 
   <header class="hero">
     <div class="brigade stencil">Brigade Airsoft Games Presents</div>

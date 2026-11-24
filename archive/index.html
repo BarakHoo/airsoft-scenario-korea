@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Archive — Brigade Airsoft Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink-900: #0c0f14;
+    --ink-800: #121722;
+    --ink-700: #1a2130;
+    --ink-600: #243049;
+    --steel: #d7dde8;
+    --steel-dim: #93a0b5;
+    --paper: #f3eede;
+    --accent: #caa74a;
+    --accent-bright: #e0c23a;
+    --line: rgba(215, 221, 232, 0.16);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--steel);
+    background:
+      radial-gradient(circle at 15% 8%, rgba(202,167,74,0.18), transparent 42%),
+      linear-gradient(160deg, var(--ink-900), #07090d 72%);
+    background-attachment: fixed;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .stencil { font-family: "Oswald","Arial Narrow","Heebo",system-ui,sans-serif; letter-spacing: 0.04em; }
+
+  .hero {
+    position: relative; text-align: center;
+    padding: 60px 20px 44px;
+    border-bottom: 3px solid var(--accent);
+    background: linear-gradient(180deg, rgba(7,9,13,0.5), rgba(7,9,13,0.85));
+  }
+  .brigade { font-size: clamp(13px,2.4vw,18px); color: var(--steel-dim); text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 10px; }
+  .hero h1 {
+    font-family: "Oswald","Arial Narrow","Heebo",system-ui,sans-serif; font-weight: 700;
+    text-transform: uppercase; font-size: clamp(32px,6vw,64px); line-height: 1; margin: 0;
+    color: var(--steel); text-shadow: 3px 3px 0 var(--accent), 6px 6px 18px rgba(0,0,0,0.6);
+  }
+  .hero .sub { margin-top: 14px; font-size: clamp(15px,2.4vw,20px); color: var(--accent); font-weight: 700; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .nav-row { display: flex; justify-content: center; margin-bottom: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer;
+    font-family: "Oswald",sans-serif; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 14px; font-weight: 700; padding: 11px 20px; border-radius: 8px;
+    background: var(--accent); color: var(--ink-900); border: 1px solid var(--accent);
+    transition: filter 0.15s ease;
+  }
+  .btn:hover { filter: brightness(1.12); }
+  .btn.ghost { background: transparent; color: var(--steel); border-color: var(--line); }
+
+  .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+  .game-card {
+    display: block; text-decoration: none; color: inherit;
+    background: linear-gradient(180deg, var(--ink-800), var(--ink-700));
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow); transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .game-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .game-card .thumb { width: 100%; height: 170px; object-fit: cover; background: #11140d; display: block; }
+  .game-card .body { padding: 18px 20px; }
+  .game-card h3 {
+    font-family: "Oswald",sans-serif; text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 0 0 6px; font-size: 20px; color: var(--steel);
+  }
+  .game-card .year { color: var(--accent); font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .game-card p { margin: 0; color: var(--steel-dim); font-size: 14px; }
+
+  .empty { text-align: center; color: var(--steel-dim); margin-top: 40px; }
+
+  /* ===== Language toggle ===== */
+  .lang-en { display: none !important; }
+  body.en .lang-he { display: none !important; }
+  body.en .lang-en { display: inline !important; }
+  .lang-toggle {
+    position: fixed; top: 16px; inset-inline-end: 16px; z-index: 1000;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "Oswald",sans-serif; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; font-size: 14px; background: var(--ink-700); color: var(--paper);
+    border: 1px solid var(--accent); border-radius: 8px; padding: 9px 16px; cursor: pointer;
+    box-shadow: var(--shadow); transition: background 0.2s;
+  }
+  .lang-toggle:hover { background: var(--ink-600); }
+</style>
+</head>
+<body>
+
+  <button id="langToggle" class="lang-toggle" type="button" aria-label="Toggle language">
+    <span class="lang-he">EN · English</span>
+    <span class="lang-en">HE · עברית</span>
+  </button>
+
+  <header class="hero">
+    <div class="brigade stencil">Brigade Airsoft Games</div>
+    <h1><span class="lang-he">ארכיון משחקים</span><span class="lang-en">Game Archive</span></h1>
+    <div class="sub"><span class="lang-he">כל התרחישים הקודמים במקום אחד</span><span class="lang-en">Every past scenario in one place</span></div>
+  </header>
+
+  <main class="wrap">
+    <div class="nav-row">
+      <a class="btn" href="../"><span class="lang-he">← חזרה למשחק הנוכחי</span><span class="lang-en">← Back to the current game</span></a>
+    </div>
+
+    <div class="games">
+      <a class="game-card" href="getting-high-on-your-own-supply/">
+        <img class="thumb" src="getting-high-on-your-own-supply/game-map.png" alt="Getting High on Your Own Supply map" />
+        <div class="body">
+          <h3>Getting High on Your Own Supply</h3>
+          <div class="year"><span class="lang-he">קולומביה 1984</span><span class="lang-en">Colombia 1984</span></div>
+          <p><span class="lang-he">תקיפה והגנה על מעבדות — קרטל ראול מול קרטל חבייר.</span><span class="lang-en">Attack &amp; defense of labs — Raúl Cartel vs. Javier Cartel.</span></p>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('langToggle');
+      function apply(en) {
+        document.body.classList.toggle('en', en);
+        root.setAttribute('lang', en ? 'en' : 'he');
+        root.setAttribute('dir', en ? 'ltr' : 'rtl');
+      }
+      btn.addEventListener('click', function () {
+        apply(!document.body.classList.contains('en'));
+      });
+    })();
+  </script>
+
+</body>
+</html>
