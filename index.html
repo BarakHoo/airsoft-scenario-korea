@@ -290,14 +290,16 @@
   /* Story + commander portraits */
   .story-grid {
     display: grid;
-    grid-template-columns: 1fr 440px;
-    gap: 28px;
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
   .boss-stack {
     display: flex;
     flex-direction: row;
     gap: 14px;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
   }
   .boss-figure {
     position: relative;
@@ -426,7 +428,7 @@
 
     <!-- Logistics / details -->
     <section id="details">
-      <span class="num">1</span>
+      <h2 class="sec-title"><span class="num">1</span> <span class="lang-he">פרטי המשחק</span><span class="lang-en">Game Details</span></h2>
       <div class="details-grid">
         <div class="card where">
           <b><span class="lang-he">מיקום והוראות הגעה</span><span class="lang-en">Location &amp; Directions</span></b>
@@ -438,7 +440,7 @@
 
     <!-- Special rules -->
     <section id="special">
-      <span class="num">2</span>
+      <h2 class="sec-title"><span class="num">2</span> <span class="lang-he">חוקים מיוחדים</span><span class="lang-en">Special Rules</span></h2>
       <div class="rule-grid">
         <div class="rule-block card">
           <h3><span class="dot"></span> <span class="lang-he">איסורים</span><span class="lang-en">Prohibited</span></h3>
@@ -464,7 +466,7 @@
 
     <!-- Energy / classification table -->
     <section id="energy">
-      <span class="num">3</span>
+      <h2 class="sec-title"><span class="num">3</span> <span class="lang-he">בטיחות — חוקי אנרגיה והגבלת סיווג</span><span class="lang-en">Safety — Energy Rules &amp; Classification Limits</span></h2>
       <div class="table-scroll">
         <table>
           <thead>
@@ -556,7 +558,7 @@
 
     <!-- Background / Story -->
     <section id="story">
-      <span class="num">4</span>
+      <h2 class="sec-title"><span class="num">4</span> <span class="lang-he">התסריט</span><span class="lang-en">The Scenario</span></h2>
       <div class="story-grid">
       <div class="card lede">
         <p>
@@ -577,7 +579,7 @@
         </p>
         <p>
           <span class="lang-he"><b>העיר שבה זה קורה:</b> סיאפריפריאנג.</span>
-          <b>The city where it all unfolds:</b> סיאפריפריאנג.</span>
+          <span class="lang-en block"><b>The city where it all unfolds:</b> סיאפריפריאנג.</span>
         </p>
       </div>
         <div class="boss-stack">
@@ -595,7 +597,7 @@
 
     <!-- Factions -->
     <section id="factions">
-      <span class="num">5</span>
+      <h2 class="sec-title"><span class="num">5</span> <span class="lang-he">הכוחות</span><span class="lang-en">The Forces</span></h2>
       <div class="factions">
         <div class="faction us">
           <h3>🟦 <span class="lang-he">נאטו / ארה״ב</span><span class="lang-en">NATO / USA</span></h3>
@@ -612,7 +614,7 @@
 
     <!-- Rounds -->
     <section id="rounds">
-      <span class="num">6</span>
+      <h2 class="sec-title"><span class="num">6</span> <span class="lang-he">מהלך המשחק</span><span class="lang-en">Rounds</span></h2>
 
       <div class="round">
         <h3><span class="lang-he">ראונד 1 — ה-VIP האבוד</span><span class="lang-en">Round 1 — The Lost VIP</span></h3>
@@ -676,7 +678,7 @@
 
     <!-- Speeches -->
     <section id="speeches">
-      <span class="num">7</span>
+      <h2 class="sec-title"><span class="num">7</span> <span class="lang-he">נאומי המפקדים</span><span class="lang-en">Commanders' Speeches</span></h2>
 
       <div class="speech us">
         <h3>🟦 <span class="lang-he">פקודות מבצע — משימה 1, ארה״ב</span><span class="lang-en">Operation Orders — Mission 1, USA</span></h3>
@@ -741,7 +743,7 @@
 
     <!-- Hit rules -->
     <section id="hits">
-      <span class="num">8</span>
+      <h2 class="sec-title"><span class="num">8</span> <span class="lang-he">חוקי פגיעות</span><span class="lang-en">Hit Rules</span></h2>
       <div class="card">
         <ul class="clean">
           <li><span class="lang-he">שחקן שנפגע נדרש להכריז בקול שהוא נפגע, לסמן עצמו בסימון ברור ונראה לעין,
