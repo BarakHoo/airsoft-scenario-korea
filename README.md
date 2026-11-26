@@ -2,7 +2,7 @@
 
 The site served at **airsoft.munkys.dev**. The **current game** is featured on the main page, and an **Archive** button (top-left) opens past scenarios.
 
-> Current featured game: **סיאפריפריאנג** (North–South Korea border, Dec 2026 — a North Korean special force raids the border city of *Hofauphning* to capture a US delegation; a US task force races to rescue the sole surviving VIP).
+> Current featured game: **Penetrating Enemy Lines** (Northâ€“South Korea border, Dec 2026 â€” a North Korean special force raids the border city of *Hope Opening* to capture a US delegation; a US task force races to reach them first). Game date: 19.12.2026.
 
 ## Structure
 ```
