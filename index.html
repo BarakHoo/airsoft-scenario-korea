@@ -257,6 +257,19 @@
   .lede p:last-child { margin-bottom: 0; }
   .lede .name { color: var(--gold); font-weight: 800; white-space: nowrap; }
 
+  /* Map figure */
+  .map-figure { margin-bottom: 22px; }
+  .map-figure img { max-height: 620px; object-fit: contain; width: 100%; background: var(--ink-900); }
+  .map-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: -8px 0 22px; }
+  .map-btn {
+	display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+	background: var(--nk-red); color: var(--paper); border: 1px solid var(--nk-red); border-radius: 6px;
+	font: inherit; text-transform: uppercase; letter-spacing: 0.08em; font-size: 14px; font-weight: 700;
+	padding: 10px 18px; text-decoration: none; transition: filter 0.15s ease;
+  }
+  .map-btn:hover { filter: brightness(1.15); }
+  .map-btn#mapDownload { background: transparent; color: var(--steel); }
+
   .callout {
     margin-top: 18px;
     border-inline-start: 4px solid var(--gold);
@@ -687,9 +700,22 @@
       </div>
     </section>
 
+	<!-- Field map -->
+	<section id="map">
+	  <h2 class="sec-title"><span class="num">7</span> <span class="lang-he">מפת השטח</span><span class="lang-en">Field Map</span></h2>
+	  <figure class="figure map-figure">
+		<img src="field-map.png" class="clickable-img" alt="Field map" data-caption-he="מפת השטח" data-caption-en="Field map" />
+		<figcaption><span class="lang-he">מפת השטח</span><span class="lang-en">Field map</span></figcaption>
+	  </figure>
+	  <div class="map-actions">
+		<button type="button" class="map-btn" id="mapZoom"><span class="lang-he">הגדל מפה</span><span class="lang-en">View map</span></button>
+		<a class="map-btn" id="mapDownload" href="field-map.png" download="field-map.png"><span class="lang-he">הורדת מפה</span><span class="lang-en">Download map</span></a>
+	  </div>
+	</section>
+
     <!-- Speeches -->
     <section id="speeches">
-      <h2 class="sec-title"><span class="num">7</span> <span class="lang-he">נאומי המפקדים</span><span class="lang-en">Commanders' Speeches</span></h2>
+      <h2 class="sec-title"><span class="num">8</span> <span class="lang-he">נאומי המפקדים</span><span class="lang-en">Commanders' Speeches</span></h2>
 
       <div class="speech us">
         <h3>🟦 <span class="lang-he">פקודות מבצע — משימה 1, ארה״ב</span><span class="lang-en">Operation Orders — Mission 1, USA</span></h3>
@@ -752,7 +778,7 @@
 
     <!-- Hit rules -->
     <section id="hits">
-      <h2 class="sec-title"><span class="num">8</span> <span class="lang-he">חוקי פגיעות</span><span class="lang-en">Hit Rules</span></h2>
+      <h2 class="sec-title"><span class="num">9</span> <span class="lang-he">חוקי פגיעות</span><span class="lang-en">Hit Rules</span></h2>
       <div class="card">
         <ul class="clean">
           <li><span class="lang-he">שחקן שנפגע נדרש להכריז בקול שהוא נפגע, לסמן עצמו בסימון ברור ונראה לעין,
@@ -832,7 +858,10 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeLightbox();
       });
-    })();
+	  var mapImg = document.querySelector('.map-figure .clickable-img');
+	  var mapZoom = document.getElementById('mapZoom');
+	  if (mapImg && mapZoom) mapZoom.addEventListener('click', function () { openLightbox(mapImg); });
+	})();
   </script>
 
 </body>
