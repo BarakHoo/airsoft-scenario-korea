@@ -127,10 +127,7 @@
     box-shadow: var(--shadow);
   }
 
-  .details-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
-  }
+  .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
   .card b { color: var(--gold); display: block; margin-bottom: 4px; }
   .card a { color: var(--us-blue-bright); }
 
@@ -277,11 +274,25 @@
     padding: 14px 18px; border-radius: 0 8px 8px 0;
     font-weight: 500;
   }
-  .where .date { display: inline-block; margin-top: 10px; letter-spacing: 0.04em; background: var(--nk-red); color: var(--paper); padding: 4px 12px; border-radius: 6px; font-size: 15px; font-weight: 700; }
+  .where b { display: block; color: var(--steel); font-size: 17px; margin-bottom: 4px; }
+  .where a { color: var(--us-blue-bright); word-break: break-all; }
+  .where .date {
+    display: inline-block; margin-top: 10px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; letter-spacing: 0.06em;
+    background: var(--nk-red); color: var(--paper);
+    padding: 4px 12px; border-radius: 6px; font-size: 15px;
+  }
   .schedule { list-style: none; margin: 10px 0 0; padding: 0; }
-  .schedule li { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .schedule li {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0; border-bottom: 1px dashed var(--line);
+  }
   .schedule li:last-child { border-bottom: none; }
-  .schedule .time { flex: 0 0 auto; min-width: 64px; font-weight: 700; color: var(--gold); font-size: 18px; }
+  .schedule .time {
+    flex: 0 0 auto; min-width: 64px;
+    font-family: "Oswald", "Arial Narrow", "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 700;
+    color: var(--gold); font-size: 18px;
+  }
   .danger { border-inline-start-color: var(--nk-red-bright); background: rgba(224,57,43,0.12); }
 
   .golden-rule {
@@ -399,7 +410,7 @@
   @media print { .archive-btn { display: none; } }
 
   @media (max-width: 760px) {
-    .factions, .rule-grid { grid-template-columns: 1fr; }
+    .factions, .rule-grid, .details-grid { grid-template-columns: 1fr; }
     .story-grid { grid-template-columns: 1fr; }
     .boss-stack { flex-direction: column; max-width: 300px; margin: 0 auto; }
     .boss-figure { flex: 0 0 auto; }
@@ -450,15 +461,14 @@
     <!-- Logistics / details -->
     <section id="details">
       <h2 class="sec-title"><span class="num">1</span> <span class="lang-he">פרטי המשחק</span><span class="lang-en">Game Details</span></h2>
-      <div class="details-grid">
-        <div class="card where">
-          <b><span class="lang-he">מיקום והוראות הגעה</span><span class="lang-en">Location &amp; Directions</span></b>
-          <p style="margin:6px 0">
-          <a href="https://waze.com/ul?ll=32.099349,34.913909&amp;navigate=yes" target="_blank" rel="noopener"><span class="lang-he">פתיחת ניווט ב‑Waze</span><span class="lang-en">Open navigation in Waze</span></a></p>
-		  <span class="date"><span class="lang-he">יום שבת, 19.12.2026 · בבוקר</span><span class="lang-en">Saturday, 19.12.2026 · Morning</span></span>
-        </div>
+	  <div class="details-grid">
+		<div class="card where">
+		  <b><span class="lang-he">מיקום והוראות הגעה</span><span class="lang-en">Location &amp; Directions</span></b>
+		  <p style="margin:6px 0"><a href="https://waze.com/ul?ll=32.099349,34.913909&amp;navigate=yes" target="_blank" rel="noopener"><span class="lang-he">פתיחת ניווט ב‑Waze</span><span class="lang-en">Open navigation in Waze</span></a></p>
+				   <span class="date"><span class="lang-he">יום שבת, 19.12.2026 · בבוקר</span><span class="lang-en">Saturday, 19.12.2026 · Morning</span></span>
+		</div>
 		<div class="card">
-		  <b><span class="lang-he">לוח זמנים</span><span class="lang-en">Schedule</span></b>
+		  <b style="display:block;color:var(--steel);font-size:17px;margin-bottom:4px"><span class="lang-he">לוח זמנים</span><span class="lang-en">Schedule</span></b>
 		  <ul class="schedule">
 			<li><span class="time">08:00</span> <span class="lang-he">הגעה לשטח</span><span class="lang-en">Arrival on site</span></li>
 			<li><span class="time">08:30</span> <span class="lang-he">תדריך</span><span class="lang-en">Briefing</span></li>
@@ -469,7 +479,7 @@
 	  <div class="callout danger">
 		<span class="lang-he">מי שמאחר וכתוצאה מכך לא מגיע לתדריך לא ישתתף במשחק, בלי יוצא מן הכלל, אין הנחות בנושא, בבקשה להגיע בזמן.</span><span class="lang-en">Anyone who is late and as a result misses the briefing will not take part in the game. No exceptions, no leniency on this. Please arrive on time.</span>
 	  </div>
-    </section>
+	</section>
 
     <!-- Special rules -->
     <section id="special">
